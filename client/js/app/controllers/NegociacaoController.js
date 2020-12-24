@@ -5,24 +5,31 @@ class NegociacaoController{
         this._inputData = $("#data");
         this._inputQuantidade = $("#quantidade");
         this._inputValor = $("#valor");
-       
+        this._listaNegociacoes = new ListaNegociacoes();
     }
     
     adicionaEvento(event){
         event.preventDefault();
-               
-        //utilização da função map, arrowfunction e do recurso ... que permite passar um array como parâmetro
-        let data = new Date(...this._inputData.value.split('-').
-            map((item, indice) => item - (indice % 2)))
+                      
+        this._listaNegociacoes.adiciona(this._criaNegociacao());
+        console.log(this._listaNegociacoes.Negociacoes);   
+        this._limpaformulario();
+             
+    }
 
-            console.log('a nova data é: ',data);
-       
-        let negociacao = new Negociacao(
-            data,
+    _criaNegociacao(){
+        return new Negociacao(
+            DateHelper.textoParaData(this._inputData.value),
             this._inputQuantidade.value,
             this._inputValor.value
         )
-       
-                 
+
+    }
+
+    _limpaformulario(){
+        return this._inputData.value = '',
+        this._inputQuantidade.value = 1,
+        this._inputValor.value = 0,
+        this._inputData.focus();
     }
 }

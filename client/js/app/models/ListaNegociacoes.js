@@ -7,7 +7,11 @@ class ListaNegociacoes{
         this._negociacoes.push(negociacao);
     } 
   
-    get Negociacoes(){
+    get negociacoes(){
         return [].concat(this._negociacoes);
+    }
+
+    apaga(){
+        this._negociacoes = []; 
     }
 }

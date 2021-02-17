@@ -14,4 +14,16 @@ class ListaNegociacoes{
     apaga(){
         this._negociacoes = []; 
     }
+
+    get volumeTotal(){
+        return this._negociacoes.reduce((total,atual) => total = total + atual.volume, 0.0);
+    }
+
+    ordena(criterio){
+        return this._negociacoes.sort(criterio);
+    }
+    
+    inverteOrdem(){
+        return this._negociacoes.reverse();
+    }
 }
